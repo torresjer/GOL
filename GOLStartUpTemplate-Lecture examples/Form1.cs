@@ -221,7 +221,8 @@ namespace GOLStartUpTemplate_Lecture_examples
                 {
                     universe[x, y].SetAliveOrDead(false);
                     universe[x, y].SetNeighborsCount(0);
-                    
+                    scratchpad[x, y].SetAliveOrDead(false);
+                    scratchpad[x, y].SetNeighborsCount(0);
 
                 }
             }
