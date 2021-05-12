@@ -129,10 +129,6 @@ namespace GOLStartUpTemplate_Lecture_examples
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
 
-                    
-                    
-
-
 
 
                     // A rectangle to represent each cell in pixels
@@ -268,6 +264,27 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 NextGeneration(); 
             }
+        }
+
+       
+        //Color Modal Dialog Box for Graphics Panel
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+
+            dialog.Color = graphicsPanel1.BackColor;
+            if(DialogResult.OK == dialog.ShowDialog())
+            {
+                graphicsPanel1.BackColor = dialog.Color;
+            }
+
+            graphicsPanel1.Invalidate();
+          
+        }
+
+        private void modelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

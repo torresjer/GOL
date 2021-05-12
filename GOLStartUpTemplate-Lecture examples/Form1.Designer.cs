@@ -404,19 +404,21 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.colorToolStripMenuItem,
             this.modelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(109, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // colorToolStripMenuItem
             // 
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorToolStripMenuItem.Text = "Color";
+            this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
             // 
             // modelToolStripMenuItem
             // 
             this.modelToolStripMenuItem.Name = "modelToolStripMenuItem";
-            this.modelToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.modelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modelToolStripMenuItem.Text = "Model";
+            this.modelToolStripMenuItem.Click += new System.EventHandler(this.modelToolStripMenuItem_Click);
             // 
             // Form1
             // 
