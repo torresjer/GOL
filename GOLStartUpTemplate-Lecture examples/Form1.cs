@@ -247,17 +247,20 @@ namespace GOLStartUpTemplate_Lecture_examples
             NextGeneration();
             graphicsPanel1.Invalidate();
         }
-
+        
+        //ToolStrip Start Button
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
         }
 
+        //ToolStrip Stop Button
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
         }
 
+        //ToolStrip Next Generation Button
         private void toolStripButton2_Click_1(object sender, EventArgs e)
         {
             if (timer.Enabled == false)
@@ -284,7 +287,12 @@ namespace GOLStartUpTemplate_Lecture_examples
 
         private void modelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ModalDialogBox dlg = new ModalDialogBox();
 
+            if(DialogResult.OK == dlg.ShowDialog())
+            {
+                
+            }
         }
     }
 }
