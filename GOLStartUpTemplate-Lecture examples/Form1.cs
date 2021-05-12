@@ -13,8 +13,8 @@ namespace GOLStartUpTemplate_Lecture_examples
     public partial class Form1 : Form
     {
         // The universe array
-        Cells[,] universe = new Cells[10, 10];
-        Cells[,] scratchpad = new Cells[10,10];
+        Cells[,] universe = new Cells[50, 50];
+        Cells[,] scratchpad = new Cells[50,50];
 
         
         // Drawing colors
@@ -53,28 +53,37 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 for(int x = 0; x < universe.GetLength(0); x++)
                 {
+                    scratchpad[x, y].SetAliveOrDead(false);
+                    scratchpad[x, y].SetNeighborsCount(0);
                     int count = CountingNeighbours(x, y);
+                    universe[x, y].SetNeighborsCount(count);
                     //apply rules
                     //should cell live or die
                     //turn on/off in scratchpad
-                    if((universe[x, y].GetAliveOrDead() == true) && count < 2)
+                    if ((universe[x, y].GetAliveOrDead() == true) && count < 2)
                     {
                         scratchpad[x, y].SetAliveOrDead(false);
+                        
                     }
-                    else if((universe[x, y].GetAliveOrDead() == true) && count > 3)
+                    if((universe[x, y].GetAliveOrDead() == true) && count > 3)
                     {
                         scratchpad[x, y].SetAliveOrDead(false);
+                        
                     }
-                    else if ((universe[x, y].GetAliveOrDead() == true) && (count == 2 || count == 3))
+                    if ((universe[x, y].GetAliveOrDead() == true) && (count == 2 || count == 3))
                     {
                         scratchpad[x, y].SetAliveOrDead(true);
+                       
+                        
                     }
-                    else if (universe[x,y].GetAliveOrDead() == false && count == 3)
+                    if ((universe[x,y].GetAliveOrDead() == false) && count == 3)
                     {
                         scratchpad[x, y].SetAliveOrDead(true);
+                        
+                        
                     }
 
-                    universe[x, y].SetNeighborsCount(count);
+                    
                 }
             }
 
@@ -82,6 +91,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             Cells[,] temp = universe;
             universe = scratchpad;
             scratchpad = temp;
+
+            
             // Increment generation count
             generations++;
 
@@ -103,7 +114,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             float cellWidth = (float)graphicsPanel1.ClientSize.Width / (float)universe.GetLength(0);
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-           float cellHeight = (float)graphicsPanel1.ClientSize.Height / (float)universe.GetLength(1);
+            float cellHeight = (float)graphicsPanel1.ClientSize.Height / (float)universe.GetLength(1);
 
             // A Pen for drawing the grid lines (color, width)
             Pen gridPen = new Pen(gridColor, 1);
@@ -117,12 +128,12 @@ namespace GOLStartUpTemplate_Lecture_examples
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    // Fill the cell with a neighbor count
-                    Font font = new Font("Arial", 20f);
 
-                    StringFormat stringFormat = new StringFormat();
-                    stringFormat.Alignment = StringAlignment.Center;
-                    stringFormat.LineAlignment = StringAlignment.Center;
+                    
+                    
+
+
+
 
                     // A rectangle to represent each cell in pixels
                     RectangleF cellRect = Rectangle.Empty;
@@ -137,13 +148,20 @@ namespace GOLStartUpTemplate_Lecture_examples
                     if (universe[x, y].GetAliveOrDead() == true)
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
+                        
+
+                        
                     }
-                    
+                    // Fill the cell with a neighbor count
+                    Font font = new Font("Arial", 5f);
 
-
-                    int neighbors = universe[x, y].GetNeighborsCount();
-
+                    StringFormat stringFormat = new StringFormat();
+                    stringFormat.Alignment = StringAlignment.Center;
+                    stringFormat.LineAlignment = StringAlignment.Center;
+                    int neighbors = CountingNeighbours(x,y);
                     e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
+
+
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
@@ -227,8 +245,10 @@ namespace GOLStartUpTemplate_Lecture_examples
                 }
             }
 
-            generations = 0;
-
+            
+            timer.Enabled = false;
+            generations = -1;
+            NextGeneration();
             graphicsPanel1.Invalidate();
         }
 
@@ -244,7 +264,10 @@ namespace GOLStartUpTemplate_Lecture_examples
 
         private void toolStripButton2_Click_1(object sender, EventArgs e)
         {
-            NextGeneration();
+            if (timer.Enabled == false)
+            {
+                NextGeneration(); 
+            }
         }
     }
 }
