@@ -285,15 +285,7 @@ namespace GOLStartUpTemplate_Lecture_examples
           
         }
 
-        private void modelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ModalDialogBox dlg = new ModalDialogBox();
-
-            if(DialogResult.OK == dlg.ShowDialog())
-            {
-                
-            }
-        }
+     
         //Randomize universe by time seed
         private void timeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -320,6 +312,13 @@ namespace GOLStartUpTemplate_Lecture_examples
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
+        }
+
+        private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModalDialogBox UniverseSettings = new ModalDialogBox();
+
+            
         }
     }
 }

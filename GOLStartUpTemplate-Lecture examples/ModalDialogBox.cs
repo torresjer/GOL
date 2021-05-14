@@ -17,6 +17,35 @@ namespace GOLStartUpTemplate_Lecture_examples
             InitializeComponent();
         }
 
-        
+        //Gets Width of universe from ModalDialog Box
+        public int GetWidthofUniverse()
+        {
+            return (int)WidthofGrid.Value;
+        }
+        //Gets Height of Universe from ModalDialog Box
+        public int GetHeightofUniverse()
+        {
+            return (int)HeightofGrid.Value;
+        }
+        //Gets milliseconds of Generations count from ModalDialog Box
+        public int GetCountinMS()
+        {
+            return (int)GenerationCountMS.Value;
+        }
+        //Sets Width of universe
+        public void SetWidthofUniverse(int WidthofUniverse)
+        {
+            WidthofGrid.Value = WidthofUniverse;
+        }
+        //Sets Height of Universe
+        public void SetHeightofuniverse(int HeightofUniverse)
+        {
+            HeightofGrid.Value = HeightofUniverse;
+        }
+        //Sets milliseconds of Generations count
+        public void SetCountinMS(int milliseconds)
+        {
+            GenerationCountMS.Value = milliseconds;
+        }
     }
 }
