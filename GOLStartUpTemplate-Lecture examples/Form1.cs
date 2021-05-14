@@ -294,5 +294,32 @@ namespace GOLStartUpTemplate_Lecture_examples
                 
             }
         }
+        //Randomize universe by time seed
+        private void timeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random(DateTime.Now.Millisecond);
+            
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    int AliveorDead = rand.Next(0, 100);
+                    if(AliveorDead % 2 == 0)
+                    {
+                        universe[x, y].SetAliveOrDead(false);
+                    }
+                    else
+                    {
+                        universe[x, y].SetAliveOrDead(true);
+                    }
+                }
+            }
+
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
     }
 }
