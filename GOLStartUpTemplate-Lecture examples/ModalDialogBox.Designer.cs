@@ -65,6 +65,11 @@ namespace GOLStartUpTemplate_Lecture_examples
             // WidthofGrid
             // 
             this.WidthofGrid.Location = new System.Drawing.Point(195, 37);
+            this.WidthofGrid.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.WidthofGrid.Minimum = new decimal(new int[] {
             1,
             0,
@@ -82,6 +87,11 @@ namespace GOLStartUpTemplate_Lecture_examples
             // HeightofGrid
             // 
             this.HeightofGrid.Location = new System.Drawing.Point(195, 63);
+            this.HeightofGrid.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.HeightofGrid.Minimum = new decimal(new int[] {
             1,
             0,
@@ -155,8 +165,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             // ModalDialogBox
             // 
+            this.AcceptButton = this.AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(415, 187);
             this.Controls.Add(this.GenerationsCountMsLable);
             this.Controls.Add(this.HeightofULable);

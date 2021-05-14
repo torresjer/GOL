@@ -13,9 +13,10 @@ namespace GOLStartUpTemplate_Lecture_examples
     public partial class Form1 : Form
     {
         // The universe array
-        Cells[,] universe = new Cells[50, 50];
-        Cells[,] scratchpad = new Cells[50,50];
-
+        
+        Cells[,] universe = new Cells[10,10];
+        Cells[,] scratchpad = new Cells[10,10];
+        
         
         // Drawing colors
         Color gridColor = Color.Black;
@@ -40,7 +41,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             }
 
             // Setup the timer
-            timer.Interval = 100; // milliseconds
+            int milliseconds = 100;
+            timer.Interval = milliseconds; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer stopped
         }
@@ -319,6 +321,40 @@ namespace GOLStartUpTemplate_Lecture_examples
             ModalDialogBox UniverseSettings = new ModalDialogBox();
 
             
+            UniverseSettings.Text.Replace("ModalDialogBox", "Universe Settings");
+
+            UniverseSettings.SetWidthofUniverse(universe.GetLength(0));
+            UniverseSettings.SetHeightofuniverse(universe.GetLength(1));
+            UniverseSettings.SetCountinMS(timer.Interval);
+
+
+            if(DialogResult.OK == UniverseSettings.ShowDialog())
+            {
+                ResizeUniverseandScratchpad(ref universe, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                ResizeUniverseandScratchpad(ref scratchpad, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                timer.Interval = UniverseSettings.GetCountinMS();
+
+            }
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        //A method that Gives us the Ability to resize 
+        void ResizeUniverseandScratchpad(ref Cells[,] orignalArray, int Width, int Height)
+        {
+            Cells[,] NewArray = new Cells[Width, Height];
+            for(int y = 0; y < NewArray.GetLength(1); y++)
+            {
+                for(int x = 0; x < NewArray.GetLength(0); x++)
+                {
+                    NewArray[x, y] = new Cells();
+                }
+            }
+           
+            orignalArray = NewArray;
+            orignalArray = NewArray;
         }
     }
 }
