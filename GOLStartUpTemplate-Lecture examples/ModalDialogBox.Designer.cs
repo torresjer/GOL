@@ -29,8 +29,8 @@ namespace GOLStartUpTemplate_Lecture_examples
         /// </summary>
         private void InitializeComponent()
         {
-            this.AcceptButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.acceptButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.WidthofGrid = new System.Windows.Forms.NumericUpDown();
             this.HeightofGrid = new System.Windows.Forms.NumericUpDown();
             this.GenerationCountMS = new System.Windows.Forms.NumericUpDown();
@@ -42,25 +42,25 @@ namespace GOLStartUpTemplate_Lecture_examples
             ((System.ComponentModel.ISupportInitialize)(this.GenerationCountMS)).BeginInit();
             this.SuspendLayout();
             // 
-            // AcceptButton
+            // acceptButton
             // 
-            this.AcceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.AcceptButton.Location = new System.Drawing.Point(252, 152);
-            this.AcceptButton.Name = "AcceptButton";
-            this.AcceptButton.Size = new System.Drawing.Size(75, 23);
-            this.AcceptButton.TabIndex = 0;
-            this.AcceptButton.Text = "Accept";
-            this.AcceptButton.UseVisualStyleBackColor = true;
+            this.acceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.acceptButton.Location = new System.Drawing.Point(252, 152);
+            this.acceptButton.Name = "acceptButton";
+            this.acceptButton.Size = new System.Drawing.Size(75, 23);
+            this.acceptButton.TabIndex = 0;
+            this.acceptButton.Text = "Accept";
+            this.acceptButton.UseVisualStyleBackColor = true;
             // 
-            // CancelButton
+            // cancelButton
             // 
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(328, 152);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(328, 152);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 1;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // WidthofGrid
             // 
@@ -165,10 +165,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             // ModalDialogBox
             // 
-            this.AcceptButton = this.AcceptButton;
+            this.AcceptButton = this.acceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(415, 187);
             this.Controls.Add(this.GenerationsCountMsLable);
             this.Controls.Add(this.HeightofULable);
@@ -176,8 +176,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.Controls.Add(this.GenerationCountMS);
             this.Controls.Add(this.HeightofGrid);
             this.Controls.Add(this.WidthofGrid);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AcceptButton);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -194,8 +194,8 @@ namespace GOLStartUpTemplate_Lecture_examples
 
         #endregion
 
-        private System.Windows.Forms.Button AcceptButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button acceptButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.NumericUpDown WidthofGrid;
         private System.Windows.Forms.NumericUpDown HeightofGrid;
         private System.Windows.Forms.NumericUpDown GenerationCountMS;

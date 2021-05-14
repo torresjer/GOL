@@ -315,18 +315,15 @@ namespace GOLStartUpTemplate_Lecture_examples
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
         }
-
+        //Resize Universe Menu Option
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModalDialogBox UniverseSettings = new ModalDialogBox();
 
-            
             UniverseSettings.Text.Replace("ModalDialogBox", "Universe Settings");
-
             UniverseSettings.SetWidthofUniverse(universe.GetLength(0));
             UniverseSettings.SetHeightofuniverse(universe.GetLength(1));
             UniverseSettings.SetCountinMS(timer.Interval);
-
 
             if(DialogResult.OK == UniverseSettings.ShowDialog())
             {
@@ -341,7 +338,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             graphicsPanel1.Invalidate();
         }
 
-        //A method that Gives us the Ability to resize 
+        //A method that Gives us the Ability to resize 2D Arrays
         void ResizeUniverseandScratchpad(ref Cells[,] orignalArray, int Width, int Height)
         {
             Cells[,] NewArray = new Cells[Width, Height];
@@ -355,6 +352,29 @@ namespace GOLStartUpTemplate_Lecture_examples
            
             orignalArray = NewArray;
             orignalArray = NewArray;
+        }
+
+        //Contex Menu Iteam Resize Universe
+        private void resizeUniverseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModalDialogBox UniverseSettings = new ModalDialogBox();
+
+            UniverseSettings.Text.Replace("ModalDialogBox", "Universe Settings");
+            UniverseSettings.SetWidthofUniverse(universe.GetLength(0));
+            UniverseSettings.SetHeightofuniverse(universe.GetLength(1));
+            UniverseSettings.SetCountinMS(timer.Interval);
+
+            if (DialogResult.OK == UniverseSettings.ShowDialog())
+            {
+                ResizeUniverseandScratchpad(ref universe, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                ResizeUniverseandScratchpad(ref scratchpad, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                timer.Interval = UniverseSettings.GetCountinMS();
+
+            }
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
         }
     }
 }
