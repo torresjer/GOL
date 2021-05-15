@@ -57,7 +57,7 @@ namespace GOLStartUpTemplate_Lecture_examples
                 {
                     scratchpad[x, y].SetAliveOrDead(false);
                     scratchpad[x, y].SetNeighborsCount(0);
-                    int count = CountingNeighbours(x, y);
+                    int count = CountingNeighboursToroidal(x, y);
                     universe[x, y].SetNeighborsCount(count);
                     //apply rules
                     //should cell live or die
@@ -156,7 +156,7 @@ namespace GOLStartUpTemplate_Lecture_examples
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Center;
                     stringFormat.LineAlignment = StringAlignment.Center;
-                    int neighbors = CountingNeighbours(x,y);
+                    int neighbors = CountingNeighboursToroidal(x,y);
                     e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
 
 
@@ -225,7 +225,7 @@ namespace GOLStartUpTemplate_Lecture_examples
 
             
             timer.Enabled = false;
-            generations =0
+            generations = 0;
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
@@ -366,7 +366,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             
         }
         //Function used to count neighbours finite
-        int CountingNeighbours(int x, int y)
+        int CountingNeighboursFinite(int x, int y)
         {
             int count = 0;
             int Xlength = universe.GetLength(0);
@@ -384,6 +384,41 @@ namespace GOLStartUpTemplate_Lecture_examples
                     if (YCheck < 0) continue;
                     if (XCheck >= Xlength) continue;
                     if (YCheck >= Ylength) continue;
+
+                    if (universe[XCheck, YCheck].GetAliveOrDead() == true) count++;
+                }
+            }
+
+            return count;
+        }
+        int CountingNeighboursToroidal(int x, int y)
+        {
+            int count = 0;
+            int Xlength = universe.GetLength(0);
+            int Ylength = universe.GetLength(1);
+
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    int XCheck = x + xOffset;
+                    int YCheck = y + yOffset;
+
+                    if (xOffset == 0 && yOffset == 0) continue;
+                    if (XCheck < 0) {
+                        XCheck = Xlength - 1;
+                    }
+                    if (YCheck < 0) {
+                        YCheck = Ylength - 1;
+                    }
+                    if (XCheck >= Xlength)
+                    {
+                        XCheck = 0;
+                    }
+                    if (YCheck >= Ylength)
+                    {
+                        YCheck = 0;
+                    }
 
                     if (universe[XCheck, YCheck].GetAliveOrDead() == true) count++;
                 }

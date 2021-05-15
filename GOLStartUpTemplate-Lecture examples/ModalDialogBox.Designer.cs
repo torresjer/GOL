@@ -66,7 +66,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             this.WidthofGrid.Location = new System.Drawing.Point(195, 37);
             this.WidthofGrid.Maximum = new decimal(new int[] {
-            500,
+            150,
             0,
             0,
             0});
@@ -88,7 +88,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             this.HeightofGrid.Location = new System.Drawing.Point(195, 63);
             this.HeightofGrid.Maximum = new decimal(new int[] {
-            500,
+            150,
             0,
             0,
             0});
