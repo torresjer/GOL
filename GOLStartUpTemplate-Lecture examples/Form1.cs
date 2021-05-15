@@ -376,5 +376,44 @@ namespace GOLStartUpTemplate_Lecture_examples
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
         }
+        //Initialized Background Color setting
+        private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+
+            colorDialog.Color = graphicsPanel1.BackColor;
+            if(DialogResult.OK == colorDialog.ShowDialog())
+            {
+                graphicsPanel1.BackColor = colorDialog.Color;
+            }
+
+            graphicsPanel1.Invalidate();
+        }
+        //Initialized Cell Color setting
+        private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+
+            colorDialog.Color = cellColor;
+            if (DialogResult.OK == colorDialog.ShowDialog())
+            {
+                cellColor = colorDialog.Color;
+            }
+
+            graphicsPanel1.Invalidate();
+        }
+        //Initialized Grid Color setting
+        private void gridColorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+
+            colorDialog.Color = gridColor;
+            if (DialogResult.OK == colorDialog.ShowDialog())
+            {
+                gridColor = colorDialog.Color;
+            }
+
+            graphicsPanel1.Invalidate();
+        }
     }
 }
