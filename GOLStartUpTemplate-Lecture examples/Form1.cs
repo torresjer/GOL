@@ -202,32 +202,8 @@ namespace GOLStartUpTemplate_Lecture_examples
         {
             this.Close();
         }
-        int CountingNeighbours(int x, int y)
-        {
-            int count = 0;
-            int Xlength = universe.GetLength(0);
-            int Ylength = universe.GetLength(1);
-
-            for(int yOffset = -1; yOffset <= 1; yOffset++)
-            {
-                for(int xOffset = -1; xOffset <= 1; xOffset++)
-                {
-                    int XCheck = x + xOffset;
-                    int YCheck = y + yOffset;
-
-                    if (xOffset == 0 && yOffset == 0) continue;
-                    if (XCheck < 0) continue;
-                    if (YCheck < 0) continue;
-                    if (XCheck >= Xlength) continue;
-                    if (YCheck >= Ylength) continue;
-
-                    if (universe[XCheck, YCheck].GetAliveOrDead() == true) count++;
-                }
-            }
-
-            return count;
-        }
-
+       
+        //New Button Code
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -243,10 +219,14 @@ namespace GOLStartUpTemplate_Lecture_examples
                 }
             }
 
+            cellColor = Color.Gray;
+            gridColor = Color.Black;
+            graphicsPanel1.BackColor = Color.White;
+
             
             timer.Enabled = false;
-            generations = -1;
-            NextGeneration();
+            generations =0
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
         
@@ -338,21 +318,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             graphicsPanel1.Invalidate();
         }
 
-        //A method that Gives us the Ability to resize 2D Arrays
-        void ResizeUniverseandScratchpad(ref Cells[,] orignalArray, int Width, int Height)
-        {
-            Cells[,] NewArray = new Cells[Width, Height];
-            for(int y = 0; y < NewArray.GetLength(1); y++)
-            {
-                for(int x = 0; x < NewArray.GetLength(0); x++)
-                {
-                    NewArray[x, y] = new Cells();
-                }
-            }
-           
-            orignalArray = NewArray;
-            orignalArray = NewArray;
-        }
+        
+        
 
         //Contex Menu Iteam Resize Universe
         private void resizeUniverseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -380,40 +347,75 @@ namespace GOLStartUpTemplate_Lecture_examples
         private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
-
-            colorDialog.Color = graphicsPanel1.BackColor;
-            if(DialogResult.OK == colorDialog.ShowDialog())
-            {
-                graphicsPanel1.BackColor = colorDialog.Color;
-            }
-
-            graphicsPanel1.Invalidate();
+            Color temp = graphicsPanel1.BackColor;
+            ModalColorChange(ref colorDialog, ref temp);
+            graphicsPanel1.BackColor = temp;
         }
         //Initialized Cell Color setting
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
+            ModalColorChange(ref colorDialog, ref cellColor);
 
-            colorDialog.Color = cellColor;
-            if (DialogResult.OK == colorDialog.ShowDialog())
-            {
-                cellColor = colorDialog.Color;
-            }
-
-            graphicsPanel1.Invalidate();
         }
         //Initialized Grid Color setting
         private void gridColorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
+            ModalColorChange(ref colorDialog, ref gridColor);
+            
+        }
+        //Function used to count neighbours finite
+        int CountingNeighbours(int x, int y)
+        {
+            int count = 0;
+            int Xlength = universe.GetLength(0);
+            int Ylength = universe.GetLength(1);
 
-            colorDialog.Color = gridColor;
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    int XCheck = x + xOffset;
+                    int YCheck = y + yOffset;
+
+                    if (xOffset == 0 && yOffset == 0) continue;
+                    if (XCheck < 0) continue;
+                    if (YCheck < 0) continue;
+                    if (XCheck >= Xlength) continue;
+                    if (YCheck >= Ylength) continue;
+
+                    if (universe[XCheck, YCheck].GetAliveOrDead() == true) count++;
+                }
+            }
+
+            return count;
+        }
+        //Function to change Color for objects
+        void ModalColorChange(ref ColorDialog colorDialog, ref Color targetObject)
+        {
+            colorDialog.Color = targetObject;
             if (DialogResult.OK == colorDialog.ShowDialog())
             {
-                gridColor = colorDialog.Color;
+                targetObject = colorDialog.Color;
             }
 
             graphicsPanel1.Invalidate();
+        }
+        //A method that Gives us the Ability to resize 2D Arrays
+        void ResizeUniverseandScratchpad(ref Cells[,] orignalArray, int Width, int Height)
+        {
+            Cells[,] NewArray = new Cells[Width, Height];
+            for (int y = 0; y < NewArray.GetLength(1); y++)
+            {
+                for (int x = 0; x < NewArray.GetLength(0); x++)
+                {
+                    NewArray[x, y] = new Cells();
+                }
+            }
+
+            orignalArray = NewArray;
+            orignalArray = NewArray;
         }
     }
 }
