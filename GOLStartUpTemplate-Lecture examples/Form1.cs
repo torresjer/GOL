@@ -19,8 +19,8 @@ namespace GOLStartUpTemplate_Lecture_examples
         
         
         // Drawing colors
-        Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+        Color gridColor = Properties.Settings.Default.GridColor;
+        Color cellColor = Properties.Settings.Default.CellColor;
 
         // The Timer class
         Timer timer = new Timer();
@@ -31,6 +31,10 @@ namespace GOLStartUpTemplate_Lecture_examples
         public Form1()
         { 
             InitializeComponent();
+            //Resizes arrays based on settings
+            ResizeUniverseandScratchpad(ref universe, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            graphicsPanel1.BackColor = Properties.Settings.Default.PanelColor;
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 for (int x = 0; x < universe.GetLength(0); x++)
@@ -41,8 +45,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             }
 
             // Setup the timer
-            int milliseconds = 100;
-            timer.Interval = milliseconds; // milliseconds
+            timer.Interval = Properties.Settings.Default.GenerationInterval; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer stopped
         }
@@ -110,6 +113,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             NextGeneration();
         }
 
+        // The Paint Event For Graphics Panel
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             // Calculate the width and height of each cell in pixels
@@ -175,6 +179,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             cellBrush.Dispose();
         }
 
+        // The Paint Event For Graphics Panel Handeling the mouseclick
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
@@ -198,11 +203,22 @@ namespace GOLStartUpTemplate_Lecture_examples
             }
         }
 
+        //Exit Toolstrip menu
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+            Properties.Settings.Default.GenerationInterval = timer.Interval;
+            Properties.Settings.Default.UniverseHeight = universe.GetLength(1);
+            Properties.Settings.Default.UniverseWidth = universe.GetLength(0);
+            Properties.Settings.Default.PanelColor = graphicsPanel1.BackColor;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.GridColor = gridColor;
+
+            //Writing a new settings file
+            Properties.Settings.Default.Save();
             this.Close();
         }
-       
+
         //New Button Code
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
@@ -229,7 +245,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
-        
+
         //ToolStrip Start Button
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -251,7 +267,6 @@ namespace GOLStartUpTemplate_Lecture_examples
             }
         }
 
-       
         //Color Modal Dialog Box for Graphics Panel
         private void colorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -267,7 +282,29 @@ namespace GOLStartUpTemplate_Lecture_examples
           
         }
 
-     
+        //Resize Universe Menu Option
+        private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModalDialogBox UniverseSettings = new ModalDialogBox();
+
+            UniverseSettings.Text.Replace("ModalDialogBox", "Universe Settings");
+            UniverseSettings.SetWidthofUniverse(universe.GetLength(0));
+            UniverseSettings.SetHeightofuniverse(universe.GetLength(1));
+            UniverseSettings.SetCountinMS(timer.Interval);
+
+            if (DialogResult.OK == UniverseSettings.ShowDialog())
+            {
+                ResizeUniverseandScratchpad(ref universe, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                ResizeUniverseandScratchpad(ref scratchpad, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
+                timer.Interval = UniverseSettings.GetCountinMS();
+
+            }
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
+
         //Randomize universe by time seed
         private void timeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -295,32 +332,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
         }
-        //Resize Universe Menu Option
-        private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ModalDialogBox UniverseSettings = new ModalDialogBox();
-
-            UniverseSettings.Text.Replace("ModalDialogBox", "Universe Settings");
-            UniverseSettings.SetWidthofUniverse(universe.GetLength(0));
-            UniverseSettings.SetHeightofuniverse(universe.GetLength(1));
-            UniverseSettings.SetCountinMS(timer.Interval);
-
-            if(DialogResult.OK == UniverseSettings.ShowDialog())
-            {
-                ResizeUniverseandScratchpad(ref universe, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
-                ResizeUniverseandScratchpad(ref scratchpad, UniverseSettings.GetWidthofUniverse(), UniverseSettings.GetHeightofUniverse());
-                timer.Interval = UniverseSettings.GetCountinMS();
-
-            }
-            generations = 0;
-            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
-            timer.Enabled = false;
-            graphicsPanel1.Invalidate();
-        }
-
         
-        
-
         //Contex Menu Iteam Resize Universe
         private void resizeUniverseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -343,6 +355,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
         }
+
         //Initialized Background Color setting
         private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -351,6 +364,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             ModalColorChange(ref colorDialog, ref temp);
             graphicsPanel1.BackColor = temp;
         }
+
         //Initialized Cell Color setting
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -358,6 +372,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             ModalColorChange(ref colorDialog, ref cellColor);
 
         }
+
         //Initialized Grid Color setting
         private void gridColorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -365,7 +380,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             ModalColorChange(ref colorDialog, ref gridColor);
             
         }
-        //Function used to count neighbours finite
+
+        //Function used to count neighbours Finite
         int CountingNeighboursFinite(int x, int y)
         {
             int count = 0;
@@ -391,6 +407,8 @@ namespace GOLStartUpTemplate_Lecture_examples
 
             return count;
         }
+
+        //Function used to count neighbours Torodial
         int CountingNeighboursToroidal(int x, int y)
         {
             int count = 0;
@@ -426,6 +444,7 @@ namespace GOLStartUpTemplate_Lecture_examples
 
             return count;
         }
+
         //Function to change Color for objects
         void ModalColorChange(ref ColorDialog colorDialog, ref Color targetObject)
         {
@@ -437,6 +456,7 @@ namespace GOLStartUpTemplate_Lecture_examples
 
             graphicsPanel1.Invalidate();
         }
+
         //A method that Gives us the Ability to resize 2D Arrays
         void ResizeUniverseandScratchpad(ref Cells[,] orignalArray, int Width, int Height)
         {
@@ -451,6 +471,47 @@ namespace GOLStartUpTemplate_Lecture_examples
 
             orignalArray = NewArray;
             orignalArray = NewArray;
+        }
+
+        //Update settings
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.GridColor = gridColor;
+            Properties.Settings.Default.GenerationInterval = timer.Interval;
+            Properties.Settings.Default.UniverseHeight = universe.GetLength(1);
+            Properties.Settings.Default.UniverseWidth = universe.GetLength(0);
+            Properties.Settings.Default.PanelColor = graphicsPanel1.BackColor;
+
+            //Writing a new settings file
+            Properties.Settings.Default.Save();
+        }
+
+        //Initialized Reset for Settings
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            graphicsPanel1.BackColor = Properties.Settings.Default.PanelColor;
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            ResizeUniverseandScratchpad(ref universe, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            timer.Interval = Properties.Settings.Default.GenerationInterval;
+            
+            graphicsPanel1.Invalidate();
+        }
+
+        //Initialized Reload for Settings
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reload();
+            graphicsPanel1.BackColor = Properties.Settings.Default.PanelColor;
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            ResizeUniverseandScratchpad(ref universe, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
+            timer.Interval = Properties.Settings.Default.GenerationInterval;
+            graphicsPanel1.Invalidate();
         }
     }
 }
