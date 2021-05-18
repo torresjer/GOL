@@ -26,10 +26,12 @@ namespace GOLStartUpTemplate_Lecture_examples
         Timer timer = new Timer();
         // Alive Cells
         int aliveCells = 0;
+        // Dead Cells
+        int deadCells = 0;
         // Generation count
         int generations = 0;
         // Generate inital seed
-        int seed = 2021;
+        int seed = Properties.Settings.Default.Seed;
 
         public Form1()
         { 
@@ -178,9 +180,7 @@ namespace GOLStartUpTemplate_Lecture_examples
                     }
                     
 
-                    //Update Alive Cells Within the Universe
-                    aliveCells = GetAliveCellCount(universe);
-                    toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
+                   
 
 
                     if (GridVeiwMenuItem.Checked == true)
@@ -192,6 +192,20 @@ namespace GOLStartUpTemplate_Lecture_examples
 
                     
                 }
+                //Update Alive and Dead Cells Within the Universe
+                aliveCells = GetAliveCellCount(universe);
+                deadCells = GetDeadCellCount(universe);
+                toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
+                DeadCellsStatusLabel.Text = "Dead Cells = " + deadCells.ToString();
+
+                //Update Time Interval toolStrip Status
+                TimeIntervalStatusLabel1.Text = "Time Interval = " + timer.Interval.ToString();
+
+                //Update Current Seed toolStrip Status
+                CurrentSeedStatusLabel1.Text = "Current Seed = " + seed.ToString();
+
+                //Update Universe Size toolStrip Status
+                UniverseWidthandHeightStatusLabel1.Text = "Universe Size (width x height) = " + universe.GetLength(0) + " x " + universe.GetLength(1);
             }
             
             
@@ -504,6 +518,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             Properties.Settings.Default.UniverseHeight = universe.GetLength(1);
             Properties.Settings.Default.UniverseWidth = universe.GetLength(0);
             Properties.Settings.Default.PanelColor = graphicsPanel1.BackColor;
+            Properties.Settings.Default.Seed = seed;
 
             //Writing a new settings file
             Properties.Settings.Default.Save();
@@ -519,6 +534,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             ResizeUniverseandScratchpad(ref universe, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             timer.Interval = Properties.Settings.Default.GenerationInterval;
+            seed = Properties.Settings.Default.Seed;
             
             graphicsPanel1.Invalidate();
         }
@@ -533,10 +549,12 @@ namespace GOLStartUpTemplate_Lecture_examples
             ResizeUniverseandScratchpad(ref universe, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             timer.Interval = Properties.Settings.Default.GenerationInterval;
+            seed = Properties.Settings.Default.Seed;
+
             graphicsPanel1.Invalidate();
         }
 
-        // Function to Return Alive Cell count
+        //Function to Return Alive Cell count
         int GetAliveCellCount(Cells[,] universe)
         {
             int alivecells = 0;
@@ -549,10 +567,31 @@ namespace GOLStartUpTemplate_Lecture_examples
                     {
                         alivecells++;
                     }
+
                 }
             }
 
             return alivecells;
+        }
+
+        //Function to Return Dead Cell count
+        int GetDeadCellCount(Cells[,] universe)
+        {
+            int deadCells = 0;
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (universe[x, y].GetAliveOrDead() == false)
+                    {
+                        deadCells++;
+                    }
+
+                }
+            }
+
+            return deadCells;
         }
 
         //Randomize using user picked seed

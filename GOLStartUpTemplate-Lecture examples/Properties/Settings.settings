@@ -20,5 +20,8 @@
     <Setting Name="CellColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Gray</Value>
     </Setting>
+    <Setting Name="Seed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2021</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

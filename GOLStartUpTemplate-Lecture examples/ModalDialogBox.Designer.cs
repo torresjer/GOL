@@ -192,7 +192,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.MinimizeBox = false;
             this.Name = "ModalDialogBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ModalDialogBox";
+            this.Text = "Universe Options";
             ((System.ComponentModel.ISupportInitialize)(this.WidthofGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightofGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GenerationCountMS)).EndInit();
