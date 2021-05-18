@@ -67,17 +67,17 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TimeIntervalStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusAliveCells = new System.Windows.Forms.ToolStripStatusLabel();
+            this.DeadCellsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CurrentSeedStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.UniverseWidthandHeightStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.resizeUniverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TimeIntervalStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DeadCellsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.CurrentSeedStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.graphicsPanel1 = new GOLStartUpTemplate_Lecture_examples.GraphicsPanel();
-            this.UniverseWidthandHeightStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.StartGenerations.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -95,7 +95,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1190, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1190, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -108,7 +108,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripSeparator,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -117,7 +117,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
@@ -126,7 +126,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.openToolStripMenuItem.Text = "&Open";
             // 
             // saveToolStripMenuItem
@@ -135,18 +135,19 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(220, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(267, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -160,7 +161,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.FiniteToolStripMenuItem,
             this.ToroidalViewStripMenuItem});
             this.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem";
-            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(65, 32);
+            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.ViewToolStripMenuItem.Text = "&View";
             // 
             // GridVeiwMenuItem
@@ -219,7 +220,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.fromCurrentSeedToolStripMenuItem,
             this.seedToolStripMenuItem});
             this.randomizeCellsToolStripMenuItem.Name = "randomizeCellsToolStripMenuItem";
-            this.randomizeCellsToolStripMenuItem.Size = new System.Drawing.Size(158, 32);
+            this.randomizeCellsToolStripMenuItem.Size = new System.Drawing.Size(158, 29);
             this.randomizeCellsToolStripMenuItem.Text = "&Randomize Cells";
             // 
             // timeToolStripMenuItem
@@ -253,7 +254,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.resetToolStripMenuItem,
             this.reloadToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(164, 32);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(164, 29);
             this.toolsToolStripMenuItem.Text = "&Universe Settings";
             // 
             // customizeToolStripMenuItem
@@ -310,10 +311,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.StopGenerations,
             this.toolStripButton2,
             this.toolStripSeparator7});
-            this.StartGenerations.Location = new System.Drawing.Point(0, 36);
+            this.StartGenerations.Location = new System.Drawing.Point(0, 33);
             this.StartGenerations.Name = "StartGenerations";
             this.StartGenerations.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.StartGenerations.Size = new System.Drawing.Size(1190, 38);
+            this.StartGenerations.Size = new System.Drawing.Size(1190, 33);
             this.StartGenerations.TabIndex = 1;
             this.StartGenerations.Text = "Start Generations";
             // 
@@ -323,7 +324,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
             this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(34, 33);
+            this.newToolStripButton.Size = new System.Drawing.Size(34, 28);
             this.newToolStripButton.Text = "&New";
             this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
             // 
@@ -333,7 +334,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
             this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(34, 33);
+            this.openToolStripButton.Size = new System.Drawing.Size(34, 28);
             this.openToolStripButton.Text = "&Open";
             // 
             // saveToolStripButton
@@ -342,13 +343,13 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
             this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(34, 33);
+            this.saveToolStripButton.Size = new System.Drawing.Size(34, 28);
             this.saveToolStripButton.Text = "&Save";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripButton1
             // 
@@ -356,7 +357,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripButton1.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.StartButton;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(34, 33);
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 28);
             this.toolStripButton1.Text = "Start Generations";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -366,7 +367,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.StopGenerations.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.StopButton;
             this.StopGenerations.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StopGenerations.Name = "StopGenerations";
-            this.StopGenerations.Size = new System.Drawing.Size(34, 33);
+            this.StopGenerations.Size = new System.Drawing.Size(34, 28);
             this.StopGenerations.Text = "Stop Generations";
             this.StopGenerations.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -376,14 +377,14 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripButton2.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.Next_button;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(34, 33);
+            this.toolStripButton2.Size = new System.Drawing.Size(34, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 33);
             // 
             // statusStrip1
             // 
@@ -408,11 +409,35 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripStatusLabelGenerations.Size = new System.Drawing.Size(138, 25);
             this.toolStripStatusLabelGenerations.Text = "Generations = 0";
             // 
+            // TimeIntervalStatusLabel1
+            // 
+            this.TimeIntervalStatusLabel1.Name = "TimeIntervalStatusLabel1";
+            this.TimeIntervalStatusLabel1.Size = new System.Drawing.Size(145, 25);
+            this.TimeIntervalStatusLabel1.Text = "Time Interval = 0";
+            // 
             // toolStripStatusAliveCells
             // 
             this.toolStripStatusAliveCells.Name = "toolStripStatusAliveCells";
             this.toolStripStatusAliveCells.Size = new System.Drawing.Size(123, 25);
             this.toolStripStatusAliveCells.Text = "Alive Cells = 0";
+            // 
+            // DeadCellsStatusLabel
+            // 
+            this.DeadCellsStatusLabel.Name = "DeadCellsStatusLabel";
+            this.DeadCellsStatusLabel.Size = new System.Drawing.Size(127, 25);
+            this.DeadCellsStatusLabel.Text = "Dead Cells = 0";
+            // 
+            // CurrentSeedStatusLabel1
+            // 
+            this.CurrentSeedStatusLabel1.Name = "CurrentSeedStatusLabel1";
+            this.CurrentSeedStatusLabel1.Size = new System.Drawing.Size(146, 25);
+            this.CurrentSeedStatusLabel1.Text = "Current Seed = 0";
+            // 
+            // UniverseWidthandHeightStatusLabel1
+            // 
+            this.UniverseWidthandHeightStatusLabel1.Name = "UniverseWidthandHeightStatusLabel1";
+            this.UniverseWidthandHeightStatusLabel1.Size = new System.Drawing.Size(322, 25);
+            this.UniverseWidthandHeightStatusLabel1.Text = "Universe Size (width x height) = 10 x 10";
             // 
             // contextMenuStrip1
             // 
@@ -437,42 +462,18 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.colorToolStripMenuItem.Text = "&BackGround Color";
             this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
             // 
-            // TimeIntervalStatusLabel1
-            // 
-            this.TimeIntervalStatusLabel1.Name = "TimeIntervalStatusLabel1";
-            this.TimeIntervalStatusLabel1.Size = new System.Drawing.Size(145, 25);
-            this.TimeIntervalStatusLabel1.Text = "Time Interval = 0";
-            // 
-            // DeadCellsStatusLabel
-            // 
-            this.DeadCellsStatusLabel.Name = "DeadCellsStatusLabel";
-            this.DeadCellsStatusLabel.Size = new System.Drawing.Size(127, 25);
-            this.DeadCellsStatusLabel.Text = "Dead Cells = 0";
-            // 
-            // CurrentSeedStatusLabel1
-            // 
-            this.CurrentSeedStatusLabel1.Name = "CurrentSeedStatusLabel1";
-            this.CurrentSeedStatusLabel1.Size = new System.Drawing.Size(146, 25);
-            this.CurrentSeedStatusLabel1.Text = "Current Seed = 0";
-            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
             this.graphicsPanel1.ContextMenuStrip = this.contextMenuStrip1;
             this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphicsPanel1.Location = new System.Drawing.Point(0, 74);
+            this.graphicsPanel1.Location = new System.Drawing.Point(0, 66);
             this.graphicsPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.graphicsPanel1.Name = "graphicsPanel1";
-            this.graphicsPanel1.Size = new System.Drawing.Size(1190, 634);
+            this.graphicsPanel1.Size = new System.Drawing.Size(1190, 642);
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
-            // 
-            // UniverseWidthandHeightStatusLabel1
-            // 
-            this.UniverseWidthandHeightStatusLabel1.Name = "UniverseWidthandHeightStatusLabel1";
-            this.UniverseWidthandHeightStatusLabel1.Size = new System.Drawing.Size(322, 25);
-            this.UniverseWidthandHeightStatusLabel1.Text = "Universe Size (width x height) = 10 x 10";
             // 
             // Form1
             // 

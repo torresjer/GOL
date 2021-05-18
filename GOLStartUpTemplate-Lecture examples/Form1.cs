@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GOLStartUpTemplate_Lecture_examples
 {
@@ -689,6 +690,45 @@ namespace GOLStartUpTemplate_Lecture_examples
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             timer.Enabled = false;
             graphicsPanel1.Invalidate();
+        }
+
+        //Save As Functionality
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.Filter = "All Files|*.*|Cells|*.cells";
+            dialog.FilterIndex = 2; dialog.DefaultExt = "cells";
+
+            if(DialogResult.OK == dialog.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dialog.FileName);
+                DateTime dateTime = DateTime.Now;
+
+                writer.WriteLine("! When This File Was Made: " + dateTime.ToString());
+                
+
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+                    String currentRow = string.Empty;
+                    for (int x = 0; x < universe.GetLength(0); x++) 
+                    {
+                        if(universe[x,y].GetAliveOrDead() == true)
+                        {
+                            currentRow += '0';
+                        }
+                        else
+                        {
+                            currentRow += '.';
+                            
+                        }
+                    }
+                    writer.WriteLine(currentRow);
+                }
+
+                writer.Close();
+            }
         }
     }
 }
