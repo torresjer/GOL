@@ -282,6 +282,32 @@ namespace GOLStartUpTemplate_Lecture_examples
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
+        //New Tool Strip Menu Item
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right and then turn them off.
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y].SetAliveOrDead(false);
+                    universe[x, y].SetNeighborsCount(0);
+                    scratchpad[x, y].SetAliveOrDead(false);
+                    scratchpad[x, y].SetNeighborsCount(0);
+
+                }
+            }
+
+            cellColor = Color.Gray;
+            gridColor = Color.Black;
+            graphicsPanel1.BackColor = Color.White;
+
+
+            timer.Enabled = false;
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            graphicsPanel1.Invalidate();
+        }
 
         //ToolStrip Start Button
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -302,21 +328,6 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 NextGeneration(); 
             }
-        }
-
-        //Color Modal Dialog Box for Graphics Panel
-        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-
-            dialog.Color = graphicsPanel1.BackColor;
-            if(DialogResult.OK == dialog.ShowDialog())
-            {
-                graphicsPanel1.BackColor = dialog.Color;
-            }
-
-            graphicsPanel1.Invalidate();
-          
         }
 
         //Resize Universe Menu Option
@@ -370,7 +381,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             graphicsPanel1.Invalidate();
         }
         
-        //Contex Menu Iteam Resize Universe
+        //Contex Menu Item Resize Universe
         private void resizeUniverseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModalDialogBox UniverseSettings = new ModalDialogBox();
@@ -393,8 +404,97 @@ namespace GOLStartUpTemplate_Lecture_examples
             graphicsPanel1.Invalidate();
         }
 
+        //Contex Menu Item for Graphics Panel
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+
+            dialog.Color = graphicsPanel1.BackColor;
+            if (DialogResult.OK == dialog.ShowDialog())
+            {
+                graphicsPanel1.BackColor = dialog.Color;
+            }
+
+            graphicsPanel1.Invalidate();
+
+        }
+
+        //Contex Menu Item Change Cell Color
+        private void cellColorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            ModalColorChange(ref colorDialog, ref cellColor);
+        }
+
+        //Contex Menu Item Change Grid Color
+        private void gridColorToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            ModalColorChange(ref colorDialog, ref gridColor);
+        }
+
+        //Contex Menu Item Randomize By Time
+        private void randomizeByTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random(DateTime.Now.Millisecond);
+
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    int AliveorDead = rand.Next(0, 100);
+                    if (AliveorDead % 2 == 0)
+                    {
+                        universe[x, y].SetAliveOrDead(false);
+                    }
+                    else
+                    {
+                        universe[x, y].SetAliveOrDead(true);
+                    }
+                }
+            }
+
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        //Contex Menu Item Randomize Using Current Seed
+        private void randomizeBySeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedModalDialogBox seedbox = new SeedModalDialogBox();
+
+            seedbox.SetRandomSeed(seed);
+
+
+            seed = seedbox.GetRandomSeed();
+            Random rand = new Random(seed);
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    int AliveorDead = rand.Next(0, 100);
+                    if (AliveorDead % 2 == 0)
+                    {
+                        universe[x, y].SetAliveOrDead(false);
+                    }
+                    else
+                    {
+                        universe[x, y].SetAliveOrDead(true);
+                    }
+                }
+            }
+
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
+
         //Initialized Background Color setting
-        private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BackGroundColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
             Color temp = graphicsPanel1.BackColor;
@@ -595,7 +695,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             return deadCells;
         }
 
-        //Randomize using user picked seed
+        //Randomize Using User Picked Seed
         private void seedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedModalDialogBox seedbox = new SeedModalDialogBox();
@@ -649,6 +749,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 ToroidalViewStripMenuItem.Checked = false;
             }
+            if(FiniteToolStripMenuItem.Checked == false)
+            {
+                ToroidalViewStripMenuItem.Checked = true;
+            }
         }
 
         //Checks Toroidal and unChecks Finite universes
@@ -657,6 +761,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             if(ToroidalViewStripMenuItem.Checked == true)
             {
                 FiniteToolStripMenuItem.Checked = false;
+            }
+            if (ToroidalViewStripMenuItem.Checked == false)
+            {
+                FiniteToolStripMenuItem.Checked = true;
             }
         }
 
@@ -892,5 +1000,7 @@ namespace GOLStartUpTemplate_Lecture_examples
                 graphicsPanel1.Invalidate();
             }
         }
+
+        
     }
 }

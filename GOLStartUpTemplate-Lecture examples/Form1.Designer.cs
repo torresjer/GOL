@@ -77,6 +77,11 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.resizeUniverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cellColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridColorToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomizeByTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomizeBySeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new GOLStartUpTemplate_Lecture_examples.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
             this.StartGenerations.SuspendLayout();
@@ -117,8 +122,9 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -126,7 +132,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -136,19 +142,19 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(220, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -171,7 +177,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.GridVeiwMenuItem.CheckOnClick = true;
             this.GridVeiwMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.GridVeiwMenuItem.Name = "GridVeiwMenuItem";
-            this.GridVeiwMenuItem.Size = new System.Drawing.Size(242, 34);
+            this.GridVeiwMenuItem.Size = new System.Drawing.Size(270, 34);
             this.GridVeiwMenuItem.Text = "&Grid";
             this.GridVeiwMenuItem.CheckStateChanged += new System.EventHandler(this.GridVeiwMenuItem_CheckStateChanged);
             // 
@@ -181,20 +187,20 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.NeighborCountVeiwStripMenuItem.CheckOnClick = true;
             this.NeighborCountVeiwStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.NeighborCountVeiwStripMenuItem.Name = "NeighborCountVeiwStripMenuItem";
-            this.NeighborCountVeiwStripMenuItem.Size = new System.Drawing.Size(242, 34);
+            this.NeighborCountVeiwStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.NeighborCountVeiwStripMenuItem.Text = "&Neighbor Count";
             this.NeighborCountVeiwStripMenuItem.CheckStateChanged += new System.EventHandler(this.NeighborCountVeiwStripMenuItem_CheckStateChanged);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(242, 34);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.searchToolStripMenuItem.Text = "&Graphics Panel";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(239, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(267, 6);
             // 
             // FiniteToolStripMenuItem
             // 
@@ -202,7 +208,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.FiniteToolStripMenuItem.CheckOnClick = true;
             this.FiniteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiniteToolStripMenuItem.Name = "FiniteToolStripMenuItem";
-            this.FiniteToolStripMenuItem.Size = new System.Drawing.Size(242, 34);
+            this.FiniteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.FiniteToolStripMenuItem.Text = "&Finite";
             this.FiniteToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.FiniteToolStripMenuItem_CheckStateChanged);
             // 
@@ -210,7 +216,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             this.ToroidalViewStripMenuItem.CheckOnClick = true;
             this.ToroidalViewStripMenuItem.Name = "ToroidalViewStripMenuItem";
-            this.ToroidalViewStripMenuItem.Size = new System.Drawing.Size(242, 34);
+            this.ToroidalViewStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.ToroidalViewStripMenuItem.Text = "&Toroidal";
             this.ToroidalViewStripMenuItem.CheckStateChanged += new System.EventHandler(this.ToroidalViewStripMenuItem_CheckStateChanged);
             // 
@@ -270,7 +276,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.gridColorToolStripMenuItem.Name = "gridColorToolStripMenuItem";
             this.gridColorToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
             this.gridColorToolStripMenuItem.Text = "&BackGround Color";
-            this.gridColorToolStripMenuItem.Click += new System.EventHandler(this.gridColorToolStripMenuItem_Click);
+            this.gridColorToolStripMenuItem.Click += new System.EventHandler(this.BackGroundColorToolStripMenuItem_Click);
             // 
             // cellColorToolStripMenuItem
             // 
@@ -447,23 +453,62 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resizeUniverseToolStripMenuItem,
-            this.colorToolStripMenuItem});
+            this.colorToolStripMenuItem,
+            this.cellColorToolStripMenuItem1,
+            this.gridColorToolStripMenuItem2,
+            this.randomizeByTimeToolStripMenuItem,
+            this.randomizeBySeedToolStripMenuItem,
+            this.saveToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 68);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(243, 228);
             // 
             // resizeUniverseToolStripMenuItem
             // 
             this.resizeUniverseToolStripMenuItem.Name = "resizeUniverseToolStripMenuItem";
-            this.resizeUniverseToolStripMenuItem.Size = new System.Drawing.Size(228, 32);
+            this.resizeUniverseToolStripMenuItem.Size = new System.Drawing.Size(242, 32);
             this.resizeUniverseToolStripMenuItem.Text = "&Universe Options";
             this.resizeUniverseToolStripMenuItem.Click += new System.EventHandler(this.resizeUniverseToolStripMenuItem_Click);
             // 
             // colorToolStripMenuItem
             // 
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(228, 32);
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(242, 32);
             this.colorToolStripMenuItem.Text = "&BackGround Color";
             this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
+            // 
+            // cellColorToolStripMenuItem1
+            // 
+            this.cellColorToolStripMenuItem1.Name = "cellColorToolStripMenuItem1";
+            this.cellColorToolStripMenuItem1.Size = new System.Drawing.Size(242, 32);
+            this.cellColorToolStripMenuItem1.Text = "&Cell Color";
+            this.cellColorToolStripMenuItem1.Click += new System.EventHandler(this.cellColorToolStripMenuItem1_Click);
+            // 
+            // gridColorToolStripMenuItem2
+            // 
+            this.gridColorToolStripMenuItem2.Name = "gridColorToolStripMenuItem2";
+            this.gridColorToolStripMenuItem2.Size = new System.Drawing.Size(242, 32);
+            this.gridColorToolStripMenuItem2.Text = "&Grid Color";
+            this.gridColorToolStripMenuItem2.Click += new System.EventHandler(this.gridColorToolStripMenuItem2_Click);
+            // 
+            // randomizeByTimeToolStripMenuItem
+            // 
+            this.randomizeByTimeToolStripMenuItem.Name = "randomizeByTimeToolStripMenuItem";
+            this.randomizeByTimeToolStripMenuItem.Size = new System.Drawing.Size(242, 32);
+            this.randomizeByTimeToolStripMenuItem.Text = "&Randomize by Time";
+            this.randomizeByTimeToolStripMenuItem.Click += new System.EventHandler(this.randomizeByTimeToolStripMenuItem_Click);
+            // 
+            // randomizeBySeedToolStripMenuItem
+            // 
+            this.randomizeBySeedToolStripMenuItem.Name = "randomizeBySeedToolStripMenuItem";
+            this.randomizeBySeedToolStripMenuItem.Size = new System.Drawing.Size(242, 32);
+            this.randomizeBySeedToolStripMenuItem.Text = "&Randomize by Seed";
+            this.randomizeBySeedToolStripMenuItem.Click += new System.EventHandler(this.randomizeBySeedToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem1
+            // 
+            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(242, 32);
+            this.saveToolStripMenuItem1.Text = "&Save";
             // 
             // graphicsPanel1
             // 
@@ -553,6 +598,11 @@ namespace GOLStartUpTemplate_Lecture_examples
         private System.Windows.Forms.ToolStripStatusLabel DeadCellsStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel CurrentSeedStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel UniverseWidthandHeightStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem cellColorToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem gridColorToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem randomizeByTimeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem randomizeBySeedToolStripMenuItem;
     }
 }
 
