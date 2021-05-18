@@ -24,7 +24,8 @@ namespace GOLStartUpTemplate_Lecture_examples
 
         // The Timer class
         Timer timer = new Timer();
-
+        // Alive Cells
+        int aliveCells = 0;
         // Generation count
         int generations = 0;
 
@@ -87,7 +88,6 @@ namespace GOLStartUpTemplate_Lecture_examples
                         
                         
                     }
-
                     
                 }
             }
@@ -97,7 +97,6 @@ namespace GOLStartUpTemplate_Lecture_examples
             universe = scratchpad;
             scratchpad = temp;
 
-            
             // Increment generation count
             generations++;
 
@@ -162,6 +161,10 @@ namespace GOLStartUpTemplate_Lecture_examples
                     stringFormat.LineAlignment = StringAlignment.Center;
                     int neighbors = CountingNeighboursToroidal(x,y);
                     e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
+
+                    //Update Alive Cells Within the Universe
+                    aliveCells = GetAliveCellCount(universe);
+                    toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
 
 
 
@@ -512,6 +515,25 @@ namespace GOLStartUpTemplate_Lecture_examples
             ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             timer.Interval = Properties.Settings.Default.GenerationInterval;
             graphicsPanel1.Invalidate();
+        }
+
+        // Function to Return Alive Cell count
+        int GetAliveCellCount(Cells[,] universe)
+        {
+            int alivecells = 0;
+
+            for(int y  = 0; y < universe.GetLength(1); y++)
+            {
+                for(int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if(universe[x,y].GetAliveOrDead() == true)
+                    {
+                        alivecells++;
+                    }
+                }
+            }
+
+            return alivecells;
         }
     }
 }
