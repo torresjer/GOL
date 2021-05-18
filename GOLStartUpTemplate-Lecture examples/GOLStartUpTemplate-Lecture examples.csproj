@@ -53,6 +53,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SeedModalDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeedModalDialogBox.Designer.cs">
+      <DependentUpon>SeedModalDialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeedModalDialogBox.resx">
+      <DependentUpon>SeedModalDialogBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModalDialogBox.resx">
       <DependentUpon>ModalDialogBox.cs</DependentUpon>

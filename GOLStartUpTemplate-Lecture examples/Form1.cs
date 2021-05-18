@@ -28,6 +28,8 @@ namespace GOLStartUpTemplate_Lecture_examples
         int aliveCells = 0;
         // Generation count
         int generations = 0;
+        // Generate inital seed
+        int seed = 123456789;
 
         public Form1()
         { 
@@ -534,6 +536,41 @@ namespace GOLStartUpTemplate_Lecture_examples
             }
 
             return alivecells;
+        }
+
+        //Randomize using seed
+        private void seedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedModalDialogBox seedbox = new SeedModalDialogBox();
+            
+            seedbox.SetRandomSeed(seed);
+
+            if (DialogResult.OK == seedbox.ShowDialog())
+            {
+                seed = seedbox.GetRandomSeed();
+                Random rand = new Random(seed);
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+                        int AliveorDead = rand.Next(0, 100);
+                        if (AliveorDead % 2 == 0)
+                        {
+                            universe[x, y].SetAliveOrDead(false);
+                        }
+                        else
+                        {
+                            universe[x, y].SetAliveOrDead(true);
+                        }
+                    }
+                }
+
+            }
+
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
         }
     }
 }

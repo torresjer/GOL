@@ -45,9 +45,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // acceptButton
             // 
             this.acceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.acceptButton.Location = new System.Drawing.Point(252, 152);
+            this.acceptButton.Location = new System.Drawing.Point(378, 234);
+            this.acceptButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(75, 23);
+            this.acceptButton.Size = new System.Drawing.Size(112, 35);
             this.acceptButton.TabIndex = 0;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
@@ -55,16 +56,18 @@ namespace GOLStartUpTemplate_Lecture_examples
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(328, 152);
+            this.cancelButton.Location = new System.Drawing.Point(492, 234);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(112, 35);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // WidthofGrid
             // 
-            this.WidthofGrid.Location = new System.Drawing.Point(195, 37);
+            this.WidthofGrid.Location = new System.Drawing.Point(292, 57);
+            this.WidthofGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.WidthofGrid.Maximum = new decimal(new int[] {
             150,
             0,
@@ -76,7 +79,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             0,
             0});
             this.WidthofGrid.Name = "WidthofGrid";
-            this.WidthofGrid.Size = new System.Drawing.Size(120, 20);
+            this.WidthofGrid.Size = new System.Drawing.Size(180, 26);
             this.WidthofGrid.TabIndex = 2;
             this.WidthofGrid.Value = new decimal(new int[] {
             1,
@@ -86,7 +89,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             // HeightofGrid
             // 
-            this.HeightofGrid.Location = new System.Drawing.Point(195, 63);
+            this.HeightofGrid.Location = new System.Drawing.Point(292, 97);
+            this.HeightofGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HeightofGrid.Maximum = new decimal(new int[] {
             150,
             0,
@@ -98,7 +102,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             0,
             0});
             this.HeightofGrid.Name = "HeightofGrid";
-            this.HeightofGrid.Size = new System.Drawing.Size(120, 20);
+            this.HeightofGrid.Size = new System.Drawing.Size(180, 26);
             this.HeightofGrid.TabIndex = 3;
             this.HeightofGrid.Value = new decimal(new int[] {
             1,
@@ -113,22 +117,23 @@ namespace GOLStartUpTemplate_Lecture_examples
             0,
             0,
             0});
-            this.GenerationCountMS.Location = new System.Drawing.Point(195, 89);
+            this.GenerationCountMS.Location = new System.Drawing.Point(292, 137);
+            this.GenerationCountMS.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GenerationCountMS.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
             this.GenerationCountMS.Minimum = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
             0});
             this.GenerationCountMS.Name = "GenerationCountMS";
-            this.GenerationCountMS.Size = new System.Drawing.Size(120, 20);
+            this.GenerationCountMS.Size = new System.Drawing.Size(180, 26);
             this.GenerationCountMS.TabIndex = 4;
             this.GenerationCountMS.Value = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -136,9 +141,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // WidthofULable
             // 
             this.WidthofULable.AutoSize = true;
-            this.WidthofULable.Location = new System.Drawing.Point(97, 39);
+            this.WidthofULable.Location = new System.Drawing.Point(146, 60);
+            this.WidthofULable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.WidthofULable.Name = "WidthofULable";
-            this.WidthofULable.Size = new System.Drawing.Size(92, 13);
+            this.WidthofULable.Size = new System.Drawing.Size(134, 20);
             this.WidthofULable.TabIndex = 5;
             this.WidthofULable.Text = "Width of Universe";
             this.WidthofULable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,9 +152,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // HeightofULable
             // 
             this.HeightofULable.AutoSize = true;
-            this.HeightofULable.Location = new System.Drawing.Point(94, 65);
+            this.HeightofULable.Location = new System.Drawing.Point(141, 100);
+            this.HeightofULable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HeightofULable.Name = "HeightofULable";
-            this.HeightofULable.Size = new System.Drawing.Size(95, 13);
+            this.HeightofULable.Size = new System.Drawing.Size(140, 20);
             this.HeightofULable.TabIndex = 6;
             this.HeightofULable.Text = "Height of Universe";
             this.HeightofULable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -156,9 +163,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // GenerationsCountMsLable
             // 
             this.GenerationsCountMsLable.AutoSize = true;
-            this.GenerationsCountMsLable.Location = new System.Drawing.Point(30, 92);
+            this.GenerationsCountMsLable.Location = new System.Drawing.Point(45, 142);
+            this.GenerationsCountMsLable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GenerationsCountMsLable.Name = "GenerationsCountMsLable";
-            this.GenerationsCountMsLable.Size = new System.Drawing.Size(159, 13);
+            this.GenerationsCountMsLable.Size = new System.Drawing.Size(238, 20);
             this.GenerationsCountMsLable.TabIndex = 7;
             this.GenerationsCountMsLable.Text = "Generation count in milliseconds";
             this.GenerationsCountMsLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,10 +174,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             // ModalDialogBox
             // 
             this.AcceptButton = this.acceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(415, 187);
+            this.ClientSize = new System.Drawing.Size(622, 288);
             this.Controls.Add(this.GenerationsCountMsLable);
             this.Controls.Add(this.HeightofULable);
             this.Controls.Add(this.WidthofULable);
@@ -179,6 +187,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModalDialogBox";
