@@ -716,7 +716,7 @@ namespace GOLStartUpTemplate_Lecture_examples
                     {
                         if(universe[x,y].GetAliveOrDead() == true)
                         {
-                            currentRow += '0';
+                            currentRow += 'O';
                         }
                         else
                         {
@@ -728,6 +728,168 @@ namespace GOLStartUpTemplate_Lecture_examples
                 }
 
                 writer.Close();
+            }
+        }
+
+        //Save As Tool Strip Function
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.Filter = "All Files|*.*|Cells|*.cells";
+            dialog.FilterIndex = 2; dialog.DefaultExt = "cells";
+
+            if (DialogResult.OK == dialog.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dialog.FileName);
+                DateTime dateTime = DateTime.Now;
+
+                writer.WriteLine("! When This File Was Made: " + dateTime.ToString());
+
+
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+                    String currentRow = string.Empty;
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+                        if (universe[x, y].GetAliveOrDead() == true)
+                        {
+                            currentRow += 'O';
+                        }
+                        else
+                        {
+                            currentRow += '.';
+
+                        }
+                    }
+                    writer.WriteLine(currentRow);
+                }
+
+                writer.Close();
+            }
+
+        }
+
+        //Open File Functionality
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            generations = 0;
+            timer.Enabled = false;
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Filter = "All Files|*.*|Cells|*.cells*";
+            dialog.FilterIndex = 2;
+
+            if(DialogResult.OK == dialog.ShowDialog())
+            {
+                StreamReader reader = new StreamReader(dialog.FileName);
+
+                int Width = 0;
+                int Height = 0;
+
+                while (!reader.EndOfStream)
+                {
+                    //Reading one row at a time 
+                    string row = reader.ReadLine();
+
+                    if (row.StartsWith("!")) continue;
+                    Height++;
+                    Width = row.Length;
+                }
+
+                //Resizing the universe 
+                ResizeUniverseandScratchpad(ref universe, Width, Height);
+                ResizeUniverseandScratchpad(ref scratchpad, Width, Height);
+
+                reader.BaseStream.Seek(0, SeekOrigin.Begin);
+                int y = 0;
+
+                while (!reader.EndOfStream)
+                {
+                    string row1 = reader.ReadLine();
+                    if (row1.StartsWith("!")) continue;
+                    for (int x = 0; x < row1.Length; x++)
+                    {
+                        if(row1[x] == 'O')
+                        {
+                            universe[x, y].SetAliveOrDead(true);
+                            scratchpad[x, y].SetAliveOrDead(true);
+                        }
+                        if(row1[x] == '.')
+                        {
+                            universe[x, y].SetAliveOrDead(false);
+                            scratchpad[x, y].SetAliveOrDead(false);
+                        }
+                    }
+
+                    y++;
+                }
+
+                reader.Close();
+                graphicsPanel1.Invalidate();
+            }
+
+        }
+
+        //Open File Tool Strip Function
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            generations = 0;
+            timer.Enabled = false;
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Filter = "All Files|*.*|Cells|*.cells*";
+            dialog.FilterIndex = 2;
+
+            if (DialogResult.OK == dialog.ShowDialog())
+            {
+                StreamReader reader = new StreamReader(dialog.FileName);
+
+                int Width = 0;
+                int Height = 0;
+
+                while (!reader.EndOfStream)
+                {
+                    //Reading one row at a time 
+                    string row = reader.ReadLine();
+
+                    if (row.StartsWith("!")) continue;
+                    Height++;
+                    Width = row.Length;
+                }
+
+                //Resizing the universe 
+                ResizeUniverseandScratchpad(ref universe, Width, Height);
+                ResizeUniverseandScratchpad(ref scratchpad, Width, Height);
+
+                reader.BaseStream.Seek(0, SeekOrigin.Begin);
+                //Iterator for the y demention in the universe array
+                int y = 0;
+
+                while (!reader.EndOfStream)
+                {
+                    string row1 = reader.ReadLine();
+                    if (row1.StartsWith("!")) continue;
+                    for (int x = 0; x < row1.Length; x++)
+                    {
+                        if (row1[x] == 'O')
+                        {
+                            universe[x, y].SetAliveOrDead(true);
+                            scratchpad[x, y].SetAliveOrDead(true);
+                        }
+                        if (row1[x] == '.')
+                        {
+                            universe[x, y].SetAliveOrDead(false);
+                            scratchpad[x, y].SetAliveOrDead(false);
+                        }
+                    }
+
+                    y++;
+                }
+
+                reader.Close();
+                graphicsPanel1.Invalidate();
             }
         }
     }
