@@ -29,7 +29,7 @@ namespace GOLStartUpTemplate_Lecture_examples
         // Generation count
         int generations = 0;
         // Generate inital seed
-        int seed = 123456789;
+        int seed = 2021;
 
         public Form1()
         { 
@@ -63,7 +63,16 @@ namespace GOLStartUpTemplate_Lecture_examples
                 {
                     scratchpad[x, y].SetAliveOrDead(false);
                     scratchpad[x, y].SetNeighborsCount(0);
-                    int count = CountingNeighboursToroidal(x, y);
+                    int count = 0;
+                    if (FiniteToolStripMenuItem.Checked == true)
+                    {
+                        count = CountingNeighboursFinite(x,y);
+                    }
+                    if (ToroidalViewStripMenuItem.Checked == true)
+                    {
+                        count = CountingNeighboursToroidal(x, y);
+                    }
+
                     universe[x, y].SetNeighborsCount(count);
                     //apply rules
                     //should cell live or die
@@ -155,23 +164,31 @@ namespace GOLStartUpTemplate_Lecture_examples
 
                         
                     }
-                    // Fill the cell with a neighbor count
-                    Font font = new Font("Arial", 5f);
 
-                    StringFormat stringFormat = new StringFormat();
-                    stringFormat.Alignment = StringAlignment.Center;
-                    stringFormat.LineAlignment = StringAlignment.Center;
-                    int neighbors = CountingNeighboursToroidal(x,y);
-                    e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
+                    if(NeighborCountVeiwStripMenuItem.Checked == true)
+                    {
+                        // Fill the cell with a neighbor count
+                        Font font = new Font("Arial", 5f);
+
+                        StringFormat stringFormat = new StringFormat();
+                        stringFormat.Alignment = StringAlignment.Center;
+                        stringFormat.LineAlignment = StringAlignment.Center;
+                        int neighbors = CountingNeighboursToroidal(x, y);
+                        e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
+                    }
+                    
 
                     //Update Alive Cells Within the Universe
                     aliveCells = GetAliveCellCount(universe);
                     toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
 
 
-
-                    // Outline the cell with a pen
-                    e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    if (GridVeiwMenuItem.Checked == true)
+                    {
+                        // Outline the cell with a pen
+                        e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    }
+                    
 
                     
                 }
@@ -538,7 +555,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             return alivecells;
         }
 
-        //Randomize using seed
+        //Randomize using user picked seed
         private void seedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedModalDialogBox seedbox = new SeedModalDialogBox();
@@ -565,6 +582,68 @@ namespace GOLStartUpTemplate_Lecture_examples
                     }
                 }
 
+            }
+
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            timer.Enabled = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        //Method used to turn on and off the grid
+        private void GridVeiwMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            graphicsPanel1.Invalidate();
+        }
+
+        //Method used to turn on and off the Neighbor Count
+        private void NeighborCountVeiwStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            graphicsPanel1.Invalidate();
+        }
+
+        //Checks Finite and unChecks Toroidal universes
+        private void FiniteToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            if(FiniteToolStripMenuItem.Checked == true)
+            {
+                ToroidalViewStripMenuItem.Checked = false;
+            }
+        }
+
+        //Checks Toroidal and unChecks Finite universes
+        private void ToroidalViewStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            if(ToroidalViewStripMenuItem.Checked == true)
+            {
+                FiniteToolStripMenuItem.Checked = false;
+            }
+        }
+
+        //Randomizes Universe From Seed
+        private void fromCurrentSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedModalDialogBox seedbox = new SeedModalDialogBox();
+
+            seedbox.SetRandomSeed(seed);
+
+            
+            seed = seedbox.GetRandomSeed();
+            Random rand = new Random(seed);
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+               for (int x = 0; x < universe.GetLength(0); x++)
+               {
+                    int AliveorDead = rand.Next(0, 100);
+                    if (AliveorDead % 2 == 0)
+                    {
+                        universe[x, y].SetAliveOrDead(false);
+                    }
+                    else
+                    {
+                        universe[x, y].SetAliveOrDead(true);
+                    }
+               }
             }
 
             generations = 0;
