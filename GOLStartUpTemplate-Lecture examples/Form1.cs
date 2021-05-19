@@ -22,7 +22,7 @@ namespace GOLStartUpTemplate_Lecture_examples
         // Drawing colors
         Color gridColor = Properties.Settings.Default.GridColor;
         Color cellColor = Properties.Settings.Default.CellColor;
-
+        Color HUDColor = Properties.Settings.Default.HudColor;
         // The Timer class
         Timer timer = new Timer();
         // Alive Cells
@@ -141,6 +141,11 @@ namespace GOLStartUpTemplate_Lecture_examples
             // A Brush for filling living cells interiors (color)
             Brush cellBrush = new SolidBrush(cellColor);
 
+            //Make HUD Color translusent
+            Color HUDBrushColor = Color.FromArgb(200, HUDColor);
+            Brush HUDBrush = new SolidBrush(HUDBrushColor);
+
+
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
             {
@@ -193,23 +198,43 @@ namespace GOLStartUpTemplate_Lecture_examples
 
                     
                 }
-                //Update Alive and Dead Cells Within the Universe
-                aliveCells = GetAliveCellCount(universe);
-                deadCells = GetDeadCellCount(universe);
-                toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
-                DeadCellsStatusLabel.Text = "Dead Cells = " + deadCells.ToString();
-
-                //Update Time Interval toolStrip Status
-                TimeIntervalStatusLabel1.Text = "Time Interval = " + timer.Interval.ToString();
-
-                //Update Current Seed toolStrip Status
-                CurrentSeedStatusLabel1.Text = "Current Seed = " + seed.ToString();
-
-                //Update Universe Size toolStrip Status
-                UniverseWidthandHeightStatusLabel1.Text = "Universe Size (width x height) = " + universe.GetLength(0) + " x " + universe.GetLength(1);
+                
             }
+
+            //Update Alive and Dead Cells Within the Universe
+            aliveCells = GetAliveCellCount(universe);
+            deadCells = GetDeadCellCount(universe);
+            toolStripStatusAliveCells.Text = "Alive Cells = " + aliveCells.ToString();
+            DeadCellsStatusLabel.Text = "Dead Cells = " + deadCells.ToString();
+
+            //Update Time Interval toolStrip Status
+            TimeIntervalStatusLabel1.Text = "Time Interval = " + timer.Interval.ToString();
+
+            //Update Current Seed toolStrip Status
+            CurrentSeedStatusLabel1.Text = "Current Seed = " + seed.ToString();
+
+            //Update Universe Size toolStrip Status
+            UniverseWidthandHeightStatusLabel1.Text = "Universe Size (width x height) = " + universe.GetLength(0) + " x " + universe.GetLength(1);
+
+
+            //Update HUD
+            Font font1 = new Font("Arial", 15f);
+            String finiteOrToroidal = "";
+            if (FiniteToolStripMenuItem.Checked == true)
+            {
+                finiteOrToroidal = "Finite";
+            }
+            else
+            {
+                finiteOrToroidal = "Toroidal";
+            }
+            StringFormat stringFormat1 = new StringFormat();
+            stringFormat1.Alignment = StringAlignment.Near;
+            stringFormat1.LineAlignment = StringAlignment.Far;
             
-            
+            e.Graphics.DrawString("Generation = " + generations.ToString() + "\nAlive Cells = " + aliveCells.ToString() + "\nDead Cells = " + deadCells.ToString() + "\nUniverse Size (Width x Height) = " + universe.GetLength(0).ToString() + " x " + universe.GetLength(1).ToString() + "\nBoundery Type = " + finiteOrToroidal , font1, HUDBrush, graphicsPanel1.ClientRectangle, stringFormat1);
+
+
 
             // Cleaning up pens and brushes
             gridPen.Dispose();
@@ -518,6 +543,13 @@ namespace GOLStartUpTemplate_Lecture_examples
             
         }
 
+        //Initialized HUD Color setting
+        private void hudColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            ModalColorChange(ref colorDialog, ref HUDColor);
+        }
+
         //Function used to count neighbours Finite
         int CountingNeighboursFinite(int x, int y)
         {
@@ -620,6 +652,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             Properties.Settings.Default.UniverseWidth = universe.GetLength(0);
             Properties.Settings.Default.PanelColor = graphicsPanel1.BackColor;
             Properties.Settings.Default.Seed = seed;
+            Properties.Settings.Default.HudColor = HUDColor;
 
             //Writing a new settings file
             Properties.Settings.Default.Save();
@@ -636,6 +669,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             timer.Interval = Properties.Settings.Default.GenerationInterval;
             seed = Properties.Settings.Default.Seed;
+            HUDColor = Properties.Settings.Default.HudColor;
             
             graphicsPanel1.Invalidate();
         }
@@ -651,6 +685,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             ResizeUniverseandScratchpad(ref scratchpad, Properties.Settings.Default.UniverseWidth, Properties.Settings.Default.UniverseHeight);
             timer.Interval = Properties.Settings.Default.GenerationInterval;
             seed = Properties.Settings.Default.Seed;
+            HUDColor = Properties.Settings.Default.HudColor;
 
             graphicsPanel1.Invalidate();
         }
@@ -753,6 +788,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 ToroidalViewStripMenuItem.Checked = true;
             }
+
+            graphicsPanel1.Invalidate();
         }
 
         //Checks Toroidal and unChecks Finite universes
@@ -766,6 +803,8 @@ namespace GOLStartUpTemplate_Lecture_examples
             {
                 FiniteToolStripMenuItem.Checked = true;
             }
+
+            graphicsPanel1.Invalidate();
         }
 
         //Randomizes Universe From Seed

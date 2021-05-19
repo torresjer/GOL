@@ -82,7 +82,10 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.randomizeByTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomizeBySeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hudColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new GOLStartUpTemplate_Lecture_examples.GraphicsPanel();
+            this.colorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.StartGenerations.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -92,7 +95,6 @@ namespace GOLStartUpTemplate_Lecture_examples
             // menuStrip1
             // 
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.ViewToolStripMenuItem,
@@ -113,7 +115,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripSeparator,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -122,7 +124,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -132,7 +134,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -142,19 +144,19 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(220, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(267, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -168,7 +170,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.FiniteToolStripMenuItem,
             this.ToroidalViewStripMenuItem});
             this.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem";
-            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(65, 30);
             this.ViewToolStripMenuItem.Text = "&View";
             // 
             // GridVeiwMenuItem
@@ -177,7 +179,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.GridVeiwMenuItem.CheckOnClick = true;
             this.GridVeiwMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.GridVeiwMenuItem.Name = "GridVeiwMenuItem";
-            this.GridVeiwMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.GridVeiwMenuItem.Size = new System.Drawing.Size(242, 34);
             this.GridVeiwMenuItem.Text = "&Grid";
             this.GridVeiwMenuItem.CheckStateChanged += new System.EventHandler(this.GridVeiwMenuItem_CheckStateChanged);
             // 
@@ -187,20 +189,20 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.NeighborCountVeiwStripMenuItem.CheckOnClick = true;
             this.NeighborCountVeiwStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.NeighborCountVeiwStripMenuItem.Name = "NeighborCountVeiwStripMenuItem";
-            this.NeighborCountVeiwStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.NeighborCountVeiwStripMenuItem.Size = new System.Drawing.Size(242, 34);
             this.NeighborCountVeiwStripMenuItem.Text = "&Neighbor Count";
             this.NeighborCountVeiwStripMenuItem.CheckStateChanged += new System.EventHandler(this.NeighborCountVeiwStripMenuItem_CheckStateChanged);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(242, 34);
             this.searchToolStripMenuItem.Text = "&Graphics Panel";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(267, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(361, 6);
             // 
             // FiniteToolStripMenuItem
             // 
@@ -208,7 +210,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.FiniteToolStripMenuItem.CheckOnClick = true;
             this.FiniteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiniteToolStripMenuItem.Name = "FiniteToolStripMenuItem";
-            this.FiniteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.FiniteToolStripMenuItem.Size = new System.Drawing.Size(242, 34);
             this.FiniteToolStripMenuItem.Text = "&Finite";
             this.FiniteToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.FiniteToolStripMenuItem_CheckStateChanged);
             // 
@@ -216,7 +218,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             // 
             this.ToroidalViewStripMenuItem.CheckOnClick = true;
             this.ToroidalViewStripMenuItem.Name = "ToroidalViewStripMenuItem";
-            this.ToroidalViewStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.ToroidalViewStripMenuItem.Size = new System.Drawing.Size(242, 34);
             this.ToroidalViewStripMenuItem.Text = "&Toroidal";
             this.ToroidalViewStripMenuItem.CheckStateChanged += new System.EventHandler(this.ToroidalViewStripMenuItem_CheckStateChanged);
             // 
@@ -227,7 +229,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.fromCurrentSeedToolStripMenuItem,
             this.seedToolStripMenuItem});
             this.randomizeCellsToolStripMenuItem.Name = "randomizeCellsToolStripMenuItem";
-            this.randomizeCellsToolStripMenuItem.Size = new System.Drawing.Size(158, 29);
+            this.randomizeCellsToolStripMenuItem.Size = new System.Drawing.Size(158, 30);
             this.randomizeCellsToolStripMenuItem.Text = "&Randomize Cells";
             // 
             // timeToolStripMenuItem
@@ -258,51 +260,52 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.gridColorToolStripMenuItem,
             this.cellColorToolStripMenuItem,
             this.gridColorToolStripMenuItem1,
+            this.hudColorToolStripMenuItem,
             this.resetToolStripMenuItem,
             this.reloadToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(164, 29);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(164, 30);
             this.toolsToolStripMenuItem.Text = "&Universe Settings";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.customizeToolStripMenuItem.Text = "&Options";
             this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
             // 
             // gridColorToolStripMenuItem
             // 
             this.gridColorToolStripMenuItem.Name = "gridColorToolStripMenuItem";
-            this.gridColorToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.gridColorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.gridColorToolStripMenuItem.Text = "&BackGround Color";
             this.gridColorToolStripMenuItem.Click += new System.EventHandler(this.BackGroundColorToolStripMenuItem_Click);
             // 
             // cellColorToolStripMenuItem
             // 
             this.cellColorToolStripMenuItem.Name = "cellColorToolStripMenuItem";
-            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.cellColorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cellColorToolStripMenuItem.Text = "&Cell Color";
             this.cellColorToolStripMenuItem.Click += new System.EventHandler(this.cellColorToolStripMenuItem_Click);
             // 
             // gridColorToolStripMenuItem1
             // 
             this.gridColorToolStripMenuItem1.Name = "gridColorToolStripMenuItem1";
-            this.gridColorToolStripMenuItem1.Size = new System.Drawing.Size(258, 34);
+            this.gridColorToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.gridColorToolStripMenuItem1.Text = "&Grid Color";
             this.gridColorToolStripMenuItem1.Click += new System.EventHandler(this.gridColorToolStripMenuItem1_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.resetToolStripMenuItem.Text = "&Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // reloadToolStripMenuItem
             // 
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.reloadToolStripMenuItem.Text = "&Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
@@ -331,7 +334,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
             this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(34, 28);
+            this.newToolStripButton.Size = new System.Drawing.Size(34, 33);
             this.newToolStripButton.Text = "&New";
             this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
             // 
@@ -341,7 +344,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
             this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(34, 28);
+            this.openToolStripButton.Size = new System.Drawing.Size(34, 33);
             this.openToolStripButton.Text = "&Open";
             this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
             // 
@@ -351,14 +354,14 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
             this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(34, 28);
+            this.saveToolStripButton.Size = new System.Drawing.Size(34, 33);
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 33);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 38);
             // 
             // toolStripButton1
             // 
@@ -366,7 +369,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripButton1.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.StartButton;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(34, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 33);
             this.toolStripButton1.Text = "Start Generations";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -376,7 +379,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.StopGenerations.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.StopButton;
             this.StopGenerations.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StopGenerations.Name = "StopGenerations";
-            this.StopGenerations.Size = new System.Drawing.Size(34, 28);
+            this.StopGenerations.Size = new System.Drawing.Size(34, 33);
             this.StopGenerations.Text = "Stop Generations";
             this.StopGenerations.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -386,14 +389,14 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.toolStripButton2.Image = global::GOLStartUpTemplate_Lecture_examples.Properties.Resources.Next_button;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(34, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(34, 33);
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 33);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 38);
             // 
             // statusStrip1
             // 
@@ -453,6 +456,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resizeUniverseToolStripMenuItem,
+            this.colorToolStripMenuItem1,
             this.colorToolStripMenuItem,
             this.cellColorToolStripMenuItem1,
             this.gridColorToolStripMenuItem2,
@@ -460,7 +464,7 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.randomizeBySeedToolStripMenuItem,
             this.saveToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(243, 228);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(243, 293);
             // 
             // resizeUniverseToolStripMenuItem
             // 
@@ -510,6 +514,13 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.saveToolStripMenuItem1.Size = new System.Drawing.Size(242, 32);
             this.saveToolStripMenuItem1.Text = "&Save";
             // 
+            // hudColorToolStripMenuItem
+            // 
+            this.hudColorToolStripMenuItem.Name = "hudColorToolStripMenuItem";
+            this.hudColorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.hudColorToolStripMenuItem.Text = "&Hud Color";
+            this.hudColorToolStripMenuItem.Click += new System.EventHandler(this.hudColorToolStripMenuItem_Click);
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -522,6 +533,21 @@ namespace GOLStartUpTemplate_Lecture_examples
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // colorToolStripMenuItem1
+            // 
+            this.colorToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bToolStripMenuItem});
+            this.colorToolStripMenuItem1.Name = "colorToolStripMenuItem1";
+            this.colorToolStripMenuItem1.Size = new System.Drawing.Size(242, 32);
+            this.colorToolStripMenuItem1.Text = "&Color";
+            // 
+            // bToolStripMenuItem
+            // 
+            this.bToolStripMenuItem.Name = "bToolStripMenuItem";
+            this.bToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bToolStripMenuItem.Text = "&BackGround Color";
+            this.bToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -603,6 +629,9 @@ namespace GOLStartUpTemplate_Lecture_examples
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem randomizeByTimeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem randomizeBySeedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hudColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
     }
 }
 
